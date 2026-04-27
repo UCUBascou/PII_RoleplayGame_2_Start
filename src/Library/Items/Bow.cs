@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Bow
+public class Bow: IItem
 {
     //Atributos
 

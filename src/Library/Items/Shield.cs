@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Shield
+public class Shield: IItem
 {
     //Valor de ataque del shield
     private int attackValue;

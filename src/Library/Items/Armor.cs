@@ -20,7 +20,7 @@ public class Armor
     //Constructor
     public Armor(int AV, int DV)
     {
-        this.defenseValue = DV;
+        this.defenseValue = AV;
         this.defenseValue = DV;
     }
 }

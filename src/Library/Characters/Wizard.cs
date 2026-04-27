@@ -2,7 +2,7 @@ using System;
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class Wizard
+public class Wizard: ICharacter
 {
     // Atributos de Wizard
 

@@ -1,7 +1,7 @@
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class Armor
+public class Armor: IItem
 {
     //Atributos
 

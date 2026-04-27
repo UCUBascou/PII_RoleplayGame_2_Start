@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Helmet
+public class Helmet: IItem
 {
     //Valor de ataque del helmet
     private int attackValue;

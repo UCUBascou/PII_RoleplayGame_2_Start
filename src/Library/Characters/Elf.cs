@@ -1,7 +1,7 @@
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class Elf
+public class Elf: ICharacter
 {
     //Atributos
     

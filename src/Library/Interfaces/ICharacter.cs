@@ -1,6 +1,7 @@
 namespace Ucu.Poo.RolePlayGame
 {
-    public interface ICharacter
+    //Interfaz de Character
+    public interface ICharacter 
     {
         string Name { get; set; }
         int Health { get; }
@@ -9,7 +10,7 @@ namespace Ucu.Poo.RolePlayGame
         int GetTotalAttack();
         int GetTotalDefense();
 
-        void ReceiveAttack(int damage);
+        void ReceiveAttack(int incomingDamage);
         void Cure();
     }
 }

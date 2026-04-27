@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Sword
+public class Sword: IItem
 {
     //Atributos
 

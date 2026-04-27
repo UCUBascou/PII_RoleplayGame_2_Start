@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Axe
+public class Axe: IItem
 {
     //Valor de ataque del axe
     private int attackValue;

@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class MagicStaff
+public class MagicStaff: IItem
 {
     //Valor del ataque
     private int attackValue;

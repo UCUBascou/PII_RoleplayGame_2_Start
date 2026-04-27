@@ -10,7 +10,7 @@ namespace Ucu.Poo.RolePlayGame
         int GetTotalAttack();
         int GetTotalDefense();
 
-        void ReceiveAttack(int damage);
+        void ReceiveAttack(int incomingDamage);
         void Cure();
     }
 }

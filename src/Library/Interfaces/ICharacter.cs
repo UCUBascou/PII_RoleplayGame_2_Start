@@ -1,6 +1,7 @@
 namespace Ucu.Poo.RolePlayGame
 {
-    public interface ICharacter
+    //Interfaz de Character
+    public interface ICharacter 
     {
         string Name { get; set; }
         int Health { get; }

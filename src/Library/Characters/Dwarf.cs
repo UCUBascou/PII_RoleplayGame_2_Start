@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System;
+
 namespace Ucu.Poo.RolePlayGame
 {
 public class Dwarf: ICharacter
@@ -83,9 +86,10 @@ public class Dwarf: ICharacter
         if (this.Helmet != null){defensaTotal += this.Helmet.DefenseValue;}
         return defensaTotal; // La defensa total es la suma de la defensa del personaje y de las defensas de sus ítems
     }
-    public void ReceiveAttack(int incomingDMG) // ReceiveAttack necesita que se le ingrese el ataque entrante al personaje, luego se calcula el ataque total recibido
+    public void ReceiveAttack(ICharacter attacker) // ReceiveAttack necesita que se le ingrese el ataque entrante al personaje, luego se calcula el ataque total recibido
     {
-        int dmgReceived=incomingDMG-this.GetTotalDefense(); // El ataque recibido por el personaje es la resta entre el ataque entrante y la estadística de defensa total
+        Console.WriteLine($"{attacker.Name} esta atacando a {this.Name}.");
+        int dmgReceived= attacker.GetTotalAttack() - this.GetTotalDefense(); // El ataque recibido por el personaje es la resta entre el ataque entrante y la estadística de defensa total
         if (dmgReceived>0) // Si el ataque recibido es positivo (es decir que la defensa no logró bloquear el ataque entrante)
         {
             this.Health-=dmgReceived; // Se resta el daño recibido a la vida actual

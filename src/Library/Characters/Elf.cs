@@ -1,3 +1,4 @@
+using System;
 
 namespace Ucu.Poo.RolePlayGame
 {
@@ -61,9 +62,10 @@ public class Elf: ICharacter
     //Metodos
 
     //Recibir attaque y calcular nuevo valor de vida
-    public void ReceiveAttack(int incomingDamage)
+    public void ReceiveAttack(ICharacter attacker)
     {
-        int damage = incomingDamage - this.GetTotalDefense();//El daño recibido se le descuenta el valor de defensa, por lo que si la defensa es mayor no se recibe daño.
+        Console.WriteLine($"{attacker.Name} esta atacando a {this.Name}.");
+        int damage = attacker.GetTotalAttack() - this.GetTotalDefense();//El daño recibido se le descuenta el valor de defensa, por lo que si la defensa es mayor no se recibe daño.
         if (damage > 0)
         {
             this.Health -= damage;

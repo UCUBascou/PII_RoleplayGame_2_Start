@@ -80,9 +80,10 @@ public class Wizard: ICharacter
         return defensaTotal;
     }
 
-    public void ReceiveAttack(int incomingDMG)
+    public void ReceiveAttack(ICharacter attacker)
     {
-        int dmgReceived=incomingDMG-this.GetTotalDefense();
+        Console.WriteLine($"{attacker.Name} esta atacando a {this.Name}.");
+        int dmgReceived= attacker.GetTotalAttack() -this.GetTotalDefense();
         if (dmgReceived>0)
         {
             this.Health-=dmgReceived;

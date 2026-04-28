@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class SpellBook: IItem
+public class SpellBook: IItem, IMagicItem
 {
     //Lista de hechizos
     private List<Spell> spells = new List<Spell>();

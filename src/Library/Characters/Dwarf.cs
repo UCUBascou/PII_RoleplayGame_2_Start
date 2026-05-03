@@ -55,6 +55,7 @@ public class Dwarf: ICharacter
     {
         get {return this.defenseValue;} set {this.defenseValue=value;}
     }
+    
     //Métodos
     public void RemoveAxe()
     {
@@ -99,6 +100,7 @@ public class Dwarf: ICharacter
     {
         this.Health=this.BaseHealth; // Curarse es retaurar la vida actual a la vida base (vida completa)
     }
+
     //Constructor
     public Dwarf(string Dname, int basehp, int AV, int DV)
     {

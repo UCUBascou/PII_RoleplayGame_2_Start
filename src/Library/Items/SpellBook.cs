@@ -4,6 +4,12 @@ namespace Ucu.Poo.RolePlayGame
 {
 public class SpellBook: IItem, IMagicItem
 {
+
+    private bool magicalItem = true;
+    public bool MagicalItem
+    {
+        get {return this.magicalItem;}
+    }
     //Lista de hechizos
     private List<Spell> spells = new List<Spell>();
     public List<Spell> Spells

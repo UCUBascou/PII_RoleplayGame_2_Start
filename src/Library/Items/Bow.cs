@@ -3,7 +3,11 @@ namespace Ucu.Poo.RolePlayGame
 public class Bow: IItem
 {
     //Atributos
-
+    private bool magicalItem; //false por defecto
+    public bool MagicalItem
+    {
+        get {return this.magicalItem;}
+    }
     //Stats
     private int attackValue;
     public int AttackValue

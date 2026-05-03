@@ -2,6 +2,12 @@ namespace Ucu.Poo.RolePlayGame
 {
 public class MagicStaff: IItem
 {
+
+    private bool magicalItem = true;
+    public bool MagicalItem
+    {
+        get {return this.magicalItem;}
+    }
     //Valor del ataque
     private int attackValue;
     public int AttackValue

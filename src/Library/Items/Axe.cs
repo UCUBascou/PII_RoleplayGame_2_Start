@@ -2,6 +2,11 @@ namespace Ucu.Poo.RolePlayGame
 {
 public class Axe: IItem
 {
+    private bool magicalItem; //false por defecto
+    public bool MagicalItem
+    {
+        get {return this.magicalItem;}
+    }
     //Valor de ataque del axe
     private int attackValue;
     public int AttackValue

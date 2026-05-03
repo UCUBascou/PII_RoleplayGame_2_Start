@@ -2,6 +2,12 @@ namespace Ucu.Poo.RolePlayGame
 {
 public class Helmet: IItem
 {
+
+    private bool magicalItem; //false por defecto
+    public bool MagicalItem
+    {
+        get {return this.magicalItem;}
+    }
     //Valor de ataque del helmet
     private int attackValue;
     public int AttackValue

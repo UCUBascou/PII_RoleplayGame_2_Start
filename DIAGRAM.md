@@ -8,86 +8,83 @@ clases y sus atributos, operaciones y relaciones faltantes. La ventaja de usar
 
 ```mermaid
 classDiagram
-    %% Relaciones de Wizard
-    Wizard "1" --> "1" SpellsBook : has
-    Wizard "1" --> "1" Staff : has
+    %% Relaciones de Character
+    Character <|-- Wizard
+    Character <|-- Dwarf
+    Character <|-- Elf
+    Character "1" --> "*" Item : has
 
-    %% Relaciones de Dwarf
-    Dwarf "1" --> "1" Axe : has
-    Dwarf "1" --> "1" Shield : has
-    Dwarf "1" --> "1" Helmet : has
-
-    %% Relaciones de Elf
-    Elf "1" --> "1" Bow : has
-    Elf "1" --> "1" Armor : has
-    Elf "1" --> "1" Sword : has
+    %% Relaciones de Item
+    Item <|-- Axe
+    Item <|-- Sword
+    Item <|-- Bow
+    Item <|-- Shield
+    Item <|-- Armor
+    Item <|-- Helmet
+    Item <|-- Staff
+    Item <|-- SpellsBook
 
     %% Relaciones de SpellsBook con Spell
-    SpellsBook "1" --> "*" Spell : contiene
+    SpellsBook "1" --> "*" Spell : has
 
+    %% Interfaz MagicItem
+    IMagicItem <|.. Staff
+    IMagicItem <|.. SpellsBook
+
+    %% Interfaz AttackItem
+    IAttackItem <|.. Axe
+    IAttackItem <|.. Sword
+    IAttackItem <|.. Bow
+
+    %% Interfaz DefenseItem
+    IDefenseItem <|.. Shield
+    IDefenseItem <|.. Armor
+    IDefenseItem <|.. Helmet
+
+    %% clase Character
+    class Character{
+        -string Name
+        -int BaseHealth
+        -int Health
+        -int AttackValue
+        -int DefenseValue
+        -List <Item> Items
+        +Character(string name, int basehp, int AV, int DV)
+        +ReceiveAttack(int incomingDamage)
+        +Cure()
+        +GetTotalAttack()
+        +GetTotalDefense()
+        +AddItem(Item item)
+        +RemoveItem(Item item)
+    }
     %% Clase Wizard
     class Wizard{
-      -string Name
-      -SpellsBook SpellsBook
-      -MagicStaff Staff
-      -int BaseHealth
-      -int Health
-      -int AttackValue
-      -int DefenseValue
       +Wizard(string WizardName, int basehp, int AV, int DV)
-      +ReceiveAttack(int incomingDamage)
-      +Cure()
-      +GetTotalAttack()
-      +GetTotalDefense()
-      +RemoveStaff()
-      +RemoveSpellsBook()
     }
 
     %% Clase Dwarf
     class Dwarf{
-      -string Name
-      -Axe Axe
-      -Shield Shield
-      -Helmet Helmet
-      -int BaseHealth
-      -int Health
-      -int AttackValue
-      -int DefenseValue
       +Dwarf(string DwarfName, int basehp, int AV, int DV)
-      +ReceiveAttack(int incomingDMG)
-      +Cure()
-      +GetTotalAttack()
-      +GetTotalDefense()
-      +RemoveAxe()
-      +RemoveShield()
-      +RemoveHelmet()
     }
 
     %% Clase Elf
     class Elf{
-      -string Name
-      -Bow Bow
-      -Sword Sword
-      -Armor Armor
-      -int BaseHealth
-      -int Health
-      -int AttackValue
-      -int DefenseValue
-      +Elf(string ElfName, int basehp, int Av, int DV)
-      +ReceiveAttack(int incomingDamage)
-      +Cure()
-      +GetTotalAttack()
-      +GetTotalDefense()
-      +RemoveBow()
-      +RemoveSword()
-      +RemoveArmor()
+      +Elf(string ElfName, int basehp, int AV, int DV)
     }
+    %% Clase Item
+    class Item{}
+    %% Interfaces
+    class IAttackItem{
+        +GetAttackValue()
+    }
+    class IDefenseItem{
+        +GetDefenseValue()
+    }
+    class IMagicItem{}
 
     %% Clase SpellsBook
     class SpellsBook{
-      ICollection<Spell> Spells
-      -int AttackValue
-      -int DefenseValue
+      -ICollection<Spell> Spells
     }
 
     %% Clase Spell
@@ -97,39 +94,12 @@ classDiagram
     }
 
     %% Armas
-    class Axe{
-      -int AttackValue
-      -int DefenseValue
-    }
-
-    class Sword{
-      -int AttackValue
-      -int DefenseValue
-    }
-
-    class Bow{
-      -int AttackValue
-      -int DefenseValue
-    }
-
-    class Staff{
-      -int AttackValue
-      -int DefenseValue
-    }
-
+    class Axe{}
+    class Sword{}
+    class Bow{}
+    class Staff{}
     %% Defensas
-    class Shield{
-      -int AttackValue
-      -int DefenseValue
-    }
-
-    class Armor{
-      -int AttackValue
-      -int DefenseValue
-    }
-
-    class Helmet{
-      -int AttackValue
-      -int DefenseValue
-    }
+    class Shield{}
+    class Armor{}
+    class Helmet{}
 ```

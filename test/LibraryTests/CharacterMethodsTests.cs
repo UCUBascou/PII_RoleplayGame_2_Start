@@ -86,7 +86,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             book.Spells.Add(new Spell(20));
             wizard.SpellBook = book;
 
-            dwarf.ReceiveAttack(wizard.GetTotalAttack());
+            dwarf.ReceiveAttack(wizard);
             Assert.That(dwarf.Health, Is.EqualTo(70));
         }
 

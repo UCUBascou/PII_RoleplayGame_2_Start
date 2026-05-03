@@ -72,12 +72,6 @@ public class Elf: ICharacter
         }
     }
 
-    //Curar al personaje
-    public void Cure()
-    {
-        this.Health = this.BaseHealth;
-    }
-
     //Obtener Valores totales de Ataque y Defensa
     //Suma la stat del personaje y la de los items, a su vez chequea que existan tales items para evitar errores.
     public int GetTotalAttack()

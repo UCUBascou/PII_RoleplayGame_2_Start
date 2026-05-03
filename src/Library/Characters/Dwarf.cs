@@ -3,7 +3,7 @@ using System;
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class Dwarf: ICharacter
+public class Dwarf: Character
 {
     // Atributos de Dwarf
 
@@ -95,10 +95,6 @@ public class Dwarf: ICharacter
         {
             this.Health-=dmgReceived; // Se resta el daño recibido a la vida actual
         }
-    }
-    public void Cure()
-    {
-        this.Health=this.BaseHealth; // Curarse es retaurar la vida actual a la vida base (vida completa)
     }
 
     //Constructor

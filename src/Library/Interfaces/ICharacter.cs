@@ -11,6 +11,5 @@ namespace Ucu.Poo.RolePlayGame
         int GetTotalDefense();
 
         void ReceiveAttack(ICharacter attacker);
-        void Cure();
     }
 }

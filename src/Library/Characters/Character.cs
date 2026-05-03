@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Ucu.Poo.RolePlayGame
 {
@@ -51,13 +52,24 @@ namespace Ucu.Poo.RolePlayGame
     }
 
     //Métodos
+    public void RemoveItem(IItem itemToRemove)
+    {
+        ;
+    }
     public int GetTotalAttack()
     {
         int ataqueTotal = 0;
         ataqueTotal += this.AttackValue;
-        foreach (IItem item in Equipamiento)
+        foreach (IItem item in Equipamiento.OfType<IAttackItem>())
         {
             ataqueTotal += item.AttackValue;
+        }
+        if (CanUseMagic)
+        {
+            foreach (IItem item in Equipamiento.OfType<IMagicItem>())
+            {
+                ataqueTotal += item.AttackValue;
+            }
         }
         return ataqueTotal; // El ataque total es la suma del ataque del personaje y de los ataques de sus ítems
     }
@@ -65,9 +77,16 @@ namespace Ucu.Poo.RolePlayGame
     {
         int defensaTotal = 0;
         defensaTotal += this.DefenseValue;
-        foreach (IItem item in Equipamiento)
+        foreach (IItem item in Equipamiento.OfType<IDefenseItem>())
         {
             defensaTotal += item.DefenseValue;
+        }
+        if (CanUseMagic)
+        {
+            foreach (IItem item in Equipamiento.OfType<IMagicItem>())
+            {
+                defensaTotal += item.DefenseValue;
+            }
         }
         return defensaTotal; // La defensa total es la suma de la defensa del personaje y de las defensas de sus ítems
     }

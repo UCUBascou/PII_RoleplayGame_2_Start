@@ -63,8 +63,12 @@ namespace Ucu.Poo.RolePlayGame.Tests
         [Test]
         public void Cure_AfterDamage_RestoresHealthToBase()
         {
-            Dwarf dwarf = new Dwarf("dwarf", 100, 10, 5);
-            dwarf.ReceiveAttack(20);
+            //Crea Personajes
+            Elf legolas = new Elf("Legolas", 100, 10, 10);
+            Dwarf dwarf = new Dwarf("Tyrion", 100, 10, 5);
+
+            //ACciones
+            dwarf.ReceiveAttack(legolas);
             dwarf.Cure();
             Assert.That(dwarf.Health, Is.EqualTo(100));
         }
@@ -75,17 +79,19 @@ namespace Ucu.Poo.RolePlayGame.Tests
         [Test]
         public void RecieveAttack_WithTwoCharactersInGame_ReducesHealth()
         {
+            //Crea personajes
             Dwarf dwarf = new Dwarf("Enzo", 100, 10, 0);
             Wizard wizard = new Wizard("Cecilia", 100, 10, 5);
             
             //Anade Items
             Helmet casco = new Helmet(0, 15);
-            dwarf.Helmet = casco;
+            dwarf.AddItem(casco);
             wizard.Staff = new MagicStaff(15, 0);
             SpellBook book = new SpellBook(0);
             book.Spells.Add(new Spell(20));
             wizard.SpellBook = book;
 
+            //Acciones
             dwarf.ReceiveAttack(wizard);
             Assert.That(dwarf.Health, Is.EqualTo(70));
         }

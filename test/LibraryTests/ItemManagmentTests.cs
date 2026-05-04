@@ -17,10 +17,6 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Bow arco = new Bow(5);
             Bow arco2 = new Bow(10);
             elfo.AddItem(arco);
-            //Sacar
-            elfo.AddItem(arco);
-            elfo.AddItem(arco2);
-            Assert.That(elfo.Equipamiento.OfType<Sword>().FirstOrDefault(), Is.EqualTo(null));
 
             Assert.That(arco, Is.EqualTo(elfo.Equipamiento.OfType<Bow>().FirstOrDefault()));
             elfo.RemoveItem(typeof(Bow));

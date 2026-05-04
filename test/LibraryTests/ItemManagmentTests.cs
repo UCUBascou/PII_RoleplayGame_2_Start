@@ -15,7 +15,6 @@ namespace Ucu.Poo.RolePlayGame.Tests
             //Elf Items
             Elf elfo = new Elf("Elden", 100, 20, 10);
             Bow arco = new Bow(5);
-            Bow arco2 = new Bow(10);
             elfo.AddItem(arco);
 
             Assert.That(arco, Is.EqualTo(elfo.Equipamiento.OfType<Bow>().FirstOrDefault()));

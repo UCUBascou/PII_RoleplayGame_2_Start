@@ -39,7 +39,7 @@ public class SpellBook: IItem, IMagicItem, IAttackItem, IDefenseItem
     }
 
     //Constructor
-    public SpellBook(List<Spell> spells)
+    public SpellBook(List<Spell> spells = null)
     {
         this.Spells = spells;
     }

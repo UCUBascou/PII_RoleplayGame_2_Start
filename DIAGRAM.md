@@ -12,20 +12,14 @@ classDiagram
     Character <|-- Wizard
     Character <|-- Dwarf
     Character <|-- Elf
-    Character "1" --> "*" Item : has
 
-    %% Relaciones de Item
-    Item <|-- Axe
-    Item <|-- Sword
-    Item <|-- Bow
-    Item <|-- Shield
-    Item <|-- Armor
-    Item <|-- Helmet
-    Item <|-- Staff
-    Item <|-- SpellsBook
+    %% Relaciones IItem
+    IAttackItem --|> IItem
+    IDefenseItem --|> IItem
+    IMagicItem --|> IItem
 
     %% Relaciones de SpellsBook con Spell
-    SpellsBook "1" --> "*" Spell : has
+    SpellsBook --> "*" Spell : has
 
     %% Interfaz MagicItem
     IMagicItem <|.. Staff
@@ -35,11 +29,14 @@ classDiagram
     IAttackItem <|.. Axe
     IAttackItem <|.. Sword
     IAttackItem <|.. Bow
+    IAttackItem <|.. Staff
+    IAttackItem <|.. SpellsBook
 
     %% Interfaz DefenseItem
     IDefenseItem <|.. Shield
     IDefenseItem <|.. Armor
     IDefenseItem <|.. Helmet
+    IDefenseItem <|.. SpellsBook
 
     %% clase Character
     class Character{
@@ -48,7 +45,7 @@ classDiagram
         -int Health
         -int AttackValue
         -int DefenseValue
-        -List <Item> Items
+        -List <IItem> Items
         +Character(string name, int basehp, int AV, int DV)
         +ReceiveAttack(int incomingDamage)
         +Cure()
@@ -71,16 +68,17 @@ classDiagram
     class Elf{
       +Elf(string ElfName, int basehp, int AV, int DV)
     }
-    %% Clase Item
-    class Item{}
     %% Interfaces
+    class IItem{<<interface>>}
     class IAttackItem{
-        +GetAttackValue()
+        <<interface>>
+        +AttackValue
     }
     class IDefenseItem{
-        +GetDefenseValue()
+        <<interface>>
+        +DefenseValue
     }
-    class IMagicItem{}
+    class IMagicItem{<<interface>>}
 
     %% Clase SpellsBook
     class SpellsBook{

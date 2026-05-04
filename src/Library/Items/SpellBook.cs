@@ -2,14 +2,8 @@ using System.Collections.Generic;
 
 namespace Ucu.Poo.RolePlayGame
 {
-public class SpellBook: IItem, IMagicItem
+public class SpellBook: IItem, IMagicItem, IAttackItem, IDefenseItem
 {
-
-    private bool magicalItem = true;
-    public bool MagicalItem
-    {
-        get {return this.magicalItem;}
-    }
     //Lista de hechizos
     private List<Spell> spells = new List<Spell>();
     public List<Spell> Spells
@@ -25,22 +19,29 @@ public class SpellBook: IItem, IMagicItem
             int total = 0;
             foreach (Spell spell in spells)
             {
-                total += spell.Power;  // El ataque total del Libro es la suma del poder de sus hechizos
+                total += spell.AttackValue;  // El ataque total del Libro es la suma del poder de sus hechizos
             }
             return total;
         }
     }
-    //Def
-    private int defenseValue;
+    // Valor de defensa
     public int DefenseValue
     {
-        get { return this.defenseValue; } set { this.defenseValue = value;}
+        get
+        {
+            int total = 0;
+            foreach (Spell spell in spells)
+            {
+                total += spell.DefenseValue;  // El ataque total del Libro es la suma del poder de sus hechizos
+            }
+            return total;
+        }
     }
 
     //Constructor
-    public SpellBook(int DV)
+    public SpellBook(List<Spell> spells)
     {
-        this.defenseValue = DV;
+        this.Spells = spells;
     }
 }
 }

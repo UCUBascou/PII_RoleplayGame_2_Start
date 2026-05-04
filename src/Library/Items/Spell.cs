@@ -2,15 +2,20 @@ namespace Ucu.Poo.RolePlayGame
 {
 public class Spell
 {
-    private int power;
-    public int Power
+    private int attackValue;
+    public int AttackValue
     {
-        get { return power; } set { this.power = value; }
+        get { return attackValue; } set { this.attackValue = value; }
     }
-
-    public Spell(int power)
+    private int defenseValue;
+    public int DefenseValue
     {
-        this.Power = power;
+        get { return defenseValue; } set { this.defenseValue = value; }
+    }
+    public Spell(int AV, int DV)
+    {
+        this.AttackValue=AV;
+        this.DefenseValue=DV;
     }
 }
 }

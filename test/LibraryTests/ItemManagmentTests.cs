@@ -24,25 +24,25 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
             //Dwarf Items
             Dwarf enano = new Dwarf("Enano", 100, 67, 67);
-            Helmet cascon = new Helmet(0, 67);
-            enano.Helmet = cascon;
+            Helmet cascon = new Helmet(67);
+            enano.AddItem(cascon);
 
-            Assert.That(cascon, Is.EqualTo(enano.Helmet));
-            enano.RemoveHelmet();
-            Assert.That(null, Is.EqualTo(enano.Helmet));
-            Assert.That(null, Is.EqualTo(enano.Axe));
+            Assert.That(cascon, Is.EqualTo(enano.Equipamiento.OfType<Helmet>().FirstOrDefault()));
+            enano.RemoveItem(typeof(Helmet));
+            Assert.That(null, Is.EqualTo(enano.Equipamiento.OfType<Helmet>().FirstOrDefault()));
+            Assert.That(null, Is.EqualTo(enano.Equipamiento.OfType<Bow>().FirstOrDefault()));
 
             //Wizard Items
             Wizard gandalf = new Wizard("Gandalf", 100, 10, 0);
-            MagicStaff bastonMagico = new MagicStaff(25, 25);
-            SpellBook libroDeHechizos = new SpellBook(0);
-            gandalf.Staff = bastonMagico;
-            gandalf.SpellBook = libroDeHechizos;
+            MagicStaff bastonMagico = new MagicStaff(25);
+            SpellBook libroDeHechizos = new SpellBook();
+            gandalf.AddItem(bastonMagico);
+            gandalf.AddItem(libroDeHechizos);
 
-            Assert.That(bastonMagico, Is.EqualTo(gandalf.Staff));
-            gandalf.RemoveStaff();
-            Assert.That(gandalf.Staff, Is.EqualTo(null));
-            Assert.That(libroDeHechizos, Is.EqualTo(gandalf.SpellBook));
+            Assert.That(bastonMagico, Is.EqualTo(gandalf.Equipamiento.OfType<MagicStaff>().FirstOrDefault()));
+            gandalf.RemoveItem(typeof(MagicStaff));
+            Assert.That(gandalf.Equipamiento.OfType<MagicStaff>().FirstOrDefault(), Is.EqualTo(null));
+            Assert.That(gandalf.Equipamiento.OfType<SpellBook>().FirstOrDefault(), Is.EqualTo(libroDeHechizos));
         }
     }
 }

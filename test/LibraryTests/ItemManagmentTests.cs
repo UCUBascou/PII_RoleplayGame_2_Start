@@ -15,7 +15,12 @@ namespace Ucu.Poo.RolePlayGame.Tests
             //Elf Items
             Elf elfo = new Elf("Elden", 100, 20, 10);
             Bow arco = new Bow(5);
+            Bow arco2 = new Bow(10);
             elfo.AddItem(arco);
+            //Sacar
+            elfo.AddItem(arco);
+            elfo.AddItem(arco2);
+            Assert.That(elfo.Equipamiento.OfType<Sword>().FirstOrDefault(), Is.EqualTo(null));
 
             Assert.That(arco, Is.EqualTo(elfo.Equipamiento.OfType<Bow>().FirstOrDefault()));
             elfo.RemoveItem(typeof(Bow));
@@ -23,7 +28,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Assert.That(elfo.Equipamiento.OfType<Sword>().FirstOrDefault(), Is.EqualTo(null));
 
             //Dwarf Items
-            Dwarf enano = new Dwarf("Enano", 100, 67, 67);
+            Dwarf enano = new Dwarf("Enzo", 100, 67, 67);
             Helmet cascon = new Helmet(67);
             enano.AddItem(cascon);
 
@@ -43,6 +48,24 @@ namespace Ucu.Poo.RolePlayGame.Tests
             gandalf.RemoveItem(typeof(MagicStaff));
             Assert.That(gandalf.Equipamiento.OfType<MagicStaff>().FirstOrDefault(), Is.EqualTo(null));
             Assert.That(gandalf.Equipamiento.OfType<SpellBook>().FirstOrDefault(), Is.EqualTo(libroDeHechizos));
+        }
+
+        ///<summary>
+        /// Chequea que AddItem remplaze el objeto si habia otro del mismo tipo
+        ///<\summary>
+        [Test]
+        public void TestAddItem_AlreadyHadTypeItem_ReplaceForNewItem()
+        {
+            //Elf Items
+            Elf elfo = new Elf("Elden", 100, 20, 10);
+            Bow arco = new Bow(5);
+            Bow arco2 = new Bow(10);
+
+            //Se anade uno y despues el otro y el arco2 deberia remplazar al primero
+            elfo.AddItem(arco);
+            elfo.AddItem(arco2);
+            Assert.That(elfo.Equipamiento.OfType<Bow>().FirstOrDefault(), Is.EqualTo(arco2));
+            Assert.That(elfo.Equipamiento.Count, Is.EqualTo(1));
         }
     }
 }

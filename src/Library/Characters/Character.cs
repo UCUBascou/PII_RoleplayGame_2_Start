@@ -4,8 +4,6 @@ using System.Linq;
 
 namespace Ucu.Poo.RolePlayGame
 {
-    //Abstract Character
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1708:Identifiers should differ by more than case", Justification = "<Pending>")]
     public abstract class Character
     {
 
@@ -59,9 +57,9 @@ namespace Ucu.Poo.RolePlayGame
         }
 
         //Métodos
-        public void RemoveItem(Type itemToRemove)
+        public void RemoveItem(Type itemToRemove) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem
         {
-            for (int i=0; i < Equipamiento.Count; i++)
+            for (int i=0; i < Equipamiento.Count; i++) 
             {
                 if (Equipamiento[i].GetType() == itemToRemove)
                 {
@@ -71,12 +69,12 @@ namespace Ucu.Poo.RolePlayGame
             }
         }
 
-        public void AddItem(IItem itemToAdd)
+        public void AddItem(IItem itemToAdd) // Agrega un item a la lista de items del personaje
         {
             Equipamiento.Add(itemToAdd);
         }
 
-        public int GetTotalAttack()
+        public int GetTotalAttack() // Calcula el ataque total del personaje al sumar el ataque intrínseco del personaje más el ataque de todos sus objetos
         {
             int ataqueTotal = 0;
             ataqueTotal += this.AttackValue;
@@ -84,7 +82,7 @@ namespace Ucu.Poo.RolePlayGame
             {
                 ataqueTotal += item.AttackValue;
             }
-            if (CanUseMagic)
+            if (CanUseMagic) // Se añade para tener en cuenta los objetos mágicos, los cuales pueden tener valor de ataque
             {
                 foreach (IAttackItem item in Equipamiento.OfType<IMagicItem>())
                 {
@@ -94,7 +92,7 @@ namespace Ucu.Poo.RolePlayGame
             return ataqueTotal; // El ataque total es la suma del ataque del personaje y de los ataques de sus ítems
         }
 
-        public int GetTotalDefense()
+        public int GetTotalDefense() // Calcula la defensa total del personaje al sumar la defensa intrínseca del personaje más la defensa de todos sus objetos
         {
             int defensaTotal = 0;
             defensaTotal += this.DefenseValue;
@@ -102,7 +100,7 @@ namespace Ucu.Poo.RolePlayGame
             {
                 defensaTotal += item.DefenseValue;
             }
-            if (CanUseMagic)
+            if (CanUseMagic) // Se añade para tener en cuenta los objetos mágicos, los cuales pueden tener valor de defensa
             {
                 foreach (IDefenseItem item in Equipamiento.OfType<IMagicItem>())
                 {
@@ -111,10 +109,10 @@ namespace Ucu.Poo.RolePlayGame
             }
             return defensaTotal; // La defensa total es la suma de la defensa del personaje y de las defensas de sus ítems
         }
-        public void ReceiveAttack(Character attacker) // ReceiveAttack necesita que se le ingrese el ataque entrante al personaje, luego se calcula el ataque total recibido
+        public void ReceiveAttack(Character attacker) // ReceiveAttack necesita que se le ingrese el atacante, luego se calcula el ataque total de ese atacante para determinar el daño recibido
         {
             Console.WriteLine($"{attacker.Name} esta atacando a {this.Name}.");
-            int dmgReceived = attacker.GetTotalAttack() - this.GetTotalDefense(); // El ataque recibido por el personaje es la resta entre el ataque entrante y la estadística de defensa total
+            int dmgReceived = attacker.GetTotalAttack() - this.GetTotalDefense(); // El ataque recibido por el personaje es la resta entre el ataque total entrante y defensa total de quien recibe el ataque
             if (dmgReceived > 0) // Si el ataque recibido es positivo (es decir que la defensa no logró bloquear el ataque entrante)
             {
                 this.Health -= dmgReceived; // Se resta el daño recibido a la vida actual

@@ -3,9 +3,9 @@ namespace Ucu.Poo.RolePlayGame
 public class Elf: Character
 {
     //Constructor
-    public Elf(string ElfName, int basehp, int AV, int DV)
+    public Elf(string Ename, int basehp, int AV, int DV)
     {
-        this.name = ElfName;
+        this.name = Ename;
         this.health = basehp;
         this.baseHealth = basehp;
         this.attackValue = AV;

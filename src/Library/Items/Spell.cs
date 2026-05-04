@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Spell
+public class Spell // Los hechizos tienen un valor de ataque y defensa, aunque alguno pueda ser 0
 {
     private int attackValue;
     public int AttackValue

@@ -3,9 +3,9 @@ namespace Ucu.Poo.RolePlayGame
 public class Wizard: Character
 {
     //Constructor
-    public Wizard(string name, int basehp, int ap, int dp)
+    public Wizard(string Wname, int basehp, int ap, int dp)
     {
-        this.Name=name;
+        this.Name=Wname;
         this.BaseHealth=basehp;
         this.Health=basehp;
         this.AttackValue=ap;

@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 
 
@@ -13,13 +14,13 @@ namespace Ucu.Poo.RolePlayGame.Tests
         {
             //Elf Items
             Elf elfo = new Elf("Elden", 100, 20, 10);
-            Bow arco = new Bow(5, 0);
-            elfo.Bow = arco;
+            Bow arco = new Bow(5);
+            elfo.AddItem(arco);
 
-            Assert.That(arco,Is.EqualTo(elfo.Bow));
-            elfo.RemoveBow();
-            Assert.That(elfo.Bow, Is.EqualTo(null));
-            Assert.That(elfo.Sword, Is.EqualTo(null));
+            Assert.That(arco, Is.EqualTo(elfo.Equipamiento.OfType<Bow>().FirstOrDefault()));
+            elfo.RemoveItem(typeof(Bow));
+            Assert.That(elfo.Equipamiento.OfType<Bow>().FirstOrDefault(), Is.EqualTo(null));
+            Assert.That(elfo.Equipamiento.OfType<Sword>().FirstOrDefault(), Is.EqualTo(null));
 
             //Dwarf Items
             Dwarf enano = new Dwarf("Enano", 100, 67, 67);

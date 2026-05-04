@@ -46,6 +46,7 @@ classDiagram
         -int AttackValue
         -int DefenseValue
         -List <IItem> Items
+        -bool CanUseMagic
         +Character(string name, int basehp, int AV, int DV)
         +ReceiveAttack(int incomingDamage)
         +Cure()

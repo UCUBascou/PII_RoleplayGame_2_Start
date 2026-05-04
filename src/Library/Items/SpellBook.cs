@@ -39,9 +39,9 @@ public class SpellBook: IItem, IMagicItem, IAttackItem, IDefenseItem // El libro
     }
 
     //Constructor
-    public SpellBook(List<Spell> spells = null) // Para crear un libro de hechizos, se necesita una lista de hechizos la cual comienza vacía y a la cual se le van agregando hechizos
+    public SpellBook() // Para crear un libro de hechizos, se necesita una lista de hechizos la cual comienza vacía y a la cual se le van agregando hechizos
     {
-        this.Spells = spells;
+        this.Spells = new List<Spell>();
     }
 }
 }

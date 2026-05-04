@@ -38,7 +38,8 @@ namespace Ucu.Poo.RolePlayGame.Tests
             MagicStaff staff = new MagicStaff(15);
 
             SpellBook book = new SpellBook();
-            book.Spells.Add(new Spell(20,0));
+            Spell hechizo = new Spell(20,0);
+            book.Spells.Add(hechizo);
 
             wizard.AddItem(staff);
             wizard.AddItem(book);
@@ -58,8 +59,11 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Axe hacha = new Axe(10);
             Shield escudo = new Shield(20);
             Helmet casco = new Helmet(5);
+            dwarf.AddItem(hacha);
+            dwarf.AddItem(escudo);
+            dwarf.AddItem(casco);
             int total = dwarf.GetTotalDefense();
-            Assert.That(total, Is.EqualTo(40));
+            Assert.That(total, Is.EqualTo(30));
         }
         /// <summary>
         /// Verifica que curarse restaura la vida base.
@@ -93,7 +97,8 @@ namespace Ucu.Poo.RolePlayGame.Tests
             amigazo.AddItem(casco);
             amigaza.AddItem(bastonazo);
             SpellBook book = new SpellBook();
-            book.Spells.Add(new Spell(20,0));
+            Spell hechizo_ofensivo = new Spell(20,0);
+            book.Spells.Add(hechizo_ofensivo);
             amigaza.AddItem(book);
 
             //Acciones

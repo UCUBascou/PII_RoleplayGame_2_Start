@@ -73,6 +73,16 @@ namespace Ucu.Poo.RolePlayGame
 
         public void AddItem(IItem itemToAdd)
         {
+            Type tipo = itemToAdd.GetType();
+
+            //Si el item ya existe es reemplazado por el nuevo ya que no queremos que tenga mas de un mismo item
+            for (int i=0; i < Equipamiento.Count; i++)
+            {
+                if (Equipamiento[i].GetType() == tipo)
+                {
+                    Equipamiento.RemoveAt(i);
+                }
+            }
             Equipamiento.Add(itemToAdd);
         }
 

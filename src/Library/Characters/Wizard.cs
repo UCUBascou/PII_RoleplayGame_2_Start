@@ -1,15 +1,16 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Wizard: Character
+public class Wizard: Hero
 {
     //Constructor
-    public Wizard(string Wname, int basehp, int ap, int dp)
+    public Wizard(string Wname, int basehp, int AV, int DV, int VP)
     {
-        this.Name=Wname;
-        this.BaseHealth=basehp;
-        this.Health=basehp;
-        this.AttackValue=ap;
-        this.DefenseValue=dp;
+        this.name=Wname;
+        this.baseHealth=basehp;
+        this.health=basehp;
+        this.attackValue=AV;
+        this.defenseValue=DV;
+        this.victoryPoints=VP;
     }
 }
 }

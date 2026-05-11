@@ -55,6 +55,12 @@ namespace Ucu.Poo.RolePlayGame
             get { return this.defenseValue; }
             set { this.defenseValue = value; }
         }
+        protected int victoryPoints;
+        public int VictoryPoints
+        {
+            get { return this.victoryPoints; }
+            set { this.victoryPoints = value; }
+        }
 
         //Métodos
         public void RemoveItem(Type itemToRemove) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem

@@ -2,11 +2,11 @@ namespace Ucu.Poo.RolePlayGame
 {
     public abstract class Hero: Character
     {
-        protected int victoryPoints;
-        public int VictoryPoints
+        protected int accumulatedVictoryPoints = 0;
+        public int AccumulatedVictoryPoints
         {
-            get { return this.victoryPoints; }
-            set { this.victoryPoints = value; }
+            get { return this.accumulatedVictoryPoints; }
+            set { this.accumulatedVictoryPoints = value; }
         }
     }
 }

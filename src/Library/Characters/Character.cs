@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Ucu.Poo.RolePlayGame
 {
-    public abstract class Character
+    public abstract class Character: ICharacter
     {
 
         // Atributos del personaje
@@ -57,11 +57,12 @@ namespace Ucu.Poo.RolePlayGame
         }
 
         //Métodos
-        public void RemoveItem(Type itemToRemove) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem
+        public void RemoveItem(Type item) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem
         {
+            Type tipo = item.GetType();
             for (int i=0; i < Equipamiento.Count; i++) 
             {
-                if (Equipamiento[i].GetType() == itemToRemove)
+                if (Equipamiento[i].GetType() == tipo)
                 {
                     Equipamiento.RemoveAt(i);
                     return;
@@ -119,7 +120,7 @@ namespace Ucu.Poo.RolePlayGame
             }
             return defensaTotal; // La defensa total es la suma de la defensa del personaje y de las defensas de sus ítems
         }
-        public void ReceiveAttack(Character attacker) // ReceiveAttack necesita que se le ingrese el atacante, luego se calcula el ataque total de ese atacante para determinar el daño recibido
+        public void ReceiveAttack(ICharacter attacker) // ReceiveAttack necesita que se le ingrese el atacante, luego se calcula el ataque total de ese atacante para determinar el daño recibido
         {
             Console.WriteLine($"{attacker.Name} esta atacando a {this.Name}.");
             int dmgReceived = attacker.GetTotalAttack() - this.GetTotalDefense(); // El ataque recibido por el personaje es la resta entre el ataque total entrante y defensa total de quien recibe el ataque

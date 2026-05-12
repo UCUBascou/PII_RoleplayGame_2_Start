@@ -4,6 +4,7 @@ namespace Ucu.Poo.RolePlayGame
 {
     public class Encounter
     {
+        // Personajes dentro del campo de batalla
         private List <Hero> heroes = new List<Hero>();
         public List <Hero> Heroes
         {
@@ -14,6 +15,8 @@ namespace Ucu.Poo.RolePlayGame
         {
             get {return this.enemies;} set {this.enemies = value;}
         }
+
+        // Comienza la batalla
         public void DoEncounter()
         {
             if (this.enemies.Count>0 && this.heroes.Count>0)
@@ -33,6 +36,18 @@ namespace Ucu.Poo.RolePlayGame
                     }
                 }
                 
+            }
+        }
+
+        public Encounter(List<Hero> heroes, List<Enemy> enemies)
+        {
+            if (heroes.Count < 1  enemies.Count < 1)
+            {
+                ;//borrar objeto
+            }
+            else
+            {
+                ;//Crear objeto
             }
         }
     }

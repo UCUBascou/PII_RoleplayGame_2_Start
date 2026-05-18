@@ -51,9 +51,8 @@ namespace Ucu.Poo.RolePlayGame
         }
 
         //Métodos
-        public void RemoveItem(Type item) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem
+        public void RemoveItem(Type tipo) // Recorre la lista de items del personaje y elimina el ingresado en el método RemoveItem
         {
-            Type tipo = item.GetType();
             for (int i=0; i < Equipamiento.Count; i++) 
             {
                 if (Equipamiento[i].GetType() == tipo)

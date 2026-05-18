@@ -24,7 +24,7 @@ namespace Ucu.Poo.RolePlayGame
             while (this.enemies.Count>0 && this.heroes.Count>0)
             {
                 
-                //Cuando solo hay un solo heroe, todos pegan a ese heroe
+                //Cuando solo hay un solo heroe, todos los enemigos le pegan a ese heroe
                 if (this.heroes.Count==1)
                 {
                     foreach (Enemy enemy in enemies)
@@ -55,20 +55,17 @@ namespace Ucu.Poo.RolePlayGame
                 //Recorre cada heroe, y cada uno ataca a cada enemigo
                 foreach (Hero hero in heroes)
                 {
-                    if (hero.Health > 0)
+                    foreach (Enemy enemy in enemies)
                     {
-                        foreach (Enemy enemy in enemies)
+                        enemy.ReceiveAttack(hero);
+                        
+                        //Comprobar si murio, en tal caso darle los puntos de victoria al heroe y eliminar el enemigo de la batalla.
+                        if (enemy.Health<=0)
                         {
-                            enemy.ReceiveAttack(hero);
-                            
-                            //Comprobar si murio, en tal caso darle los puntos de victoria al heroe y eliminar el enemigo de la batalla.
-                            if (enemy.Health<=0)
-                            {
-                                hero.AccumulatedVictoryPoints+=enemy.VictoryPoints;
-                                enemies.Remove(enemy);
-                            }         
-                        }
-                    } 
+                            hero.AccumulatedVictoryPoints+=enemy.VictoryPoints;
+                            enemies.Remove(enemy);
+                        }         
+                    }
                 }
             }
 

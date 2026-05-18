@@ -19,8 +19,22 @@ namespace Ucu.Poo.RolePlayGame
         // Comienza la batalla
         public void DoEncounter()
         {
-            if (this.enemies.Count>0 && this.heroes.Count>0)
+            while (this.enemies.Count>0 && this.heroes.Count>0)
             {
+                foreach (Hero hero in heroes)
+                {
+                    if (hero.Health<=0)
+                    {
+                        heroes.Remove(hero);
+                    }
+                }
+                foreach (Enemy enemy in enemies)
+                {
+                    if (enemy.Health<=0)
+                    {
+                        enemies.Remove(enemy);
+                    }
+                }
                 if (this.heroes.Count==1)
                 {
                     foreach (Enemy enemy in enemies)
@@ -30,25 +44,41 @@ namespace Ucu.Poo.RolePlayGame
                 }
                 else
                 {
-                    for (int i=0;i<=enemies.Count;i++)
+                    for (int i=0;i<enemies.Count;i++)
                     {
                         heroes[i%heroes.Count].ReceiveAttack(enemies[i]);
                     }
                 }
-                
+                foreach (Hero hero in heroes)
+                {
+                    if (hero.Health > 0)
+                    {
+                        foreach (Enemy enemy in enemies)
+                        {
+                            if (enemy.Health>0)
+                            {
+                                enemy.ReceiveAttack(hero);
+                                if (enemy.Health<=0)
+                                {
+                                    hero.AccumulatedVictoryPoints+=enemy.VictoryPoints;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (Hero hero in heroes)
+            {
+                if (hero.AccumulatedVictoryPoints>=5)
+                {
+                    hero.Cure();
+                }
             }
         }
-
         public Encounter(List<Hero> heroes, List<Enemy> enemies)
         {
-            if (heroes.Count < 1  enemies.Count < 1)
-            {
-                ;//borrar objeto
-            }
-            else
-            {
-                ;//Crear objeto
-            }
+            this.heroes = heroes;
+            this.enemies = enemies;
         }
     }
 }

@@ -3,7 +3,6 @@ using System;
 
 namespace Ucu.Poo.RolePlayGame
 {
-    //Interfaz IAttackItem
     public interface ICharacter //Interfaz para los personajes
     {
         string Name {get;}

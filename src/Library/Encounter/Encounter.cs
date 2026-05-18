@@ -60,8 +60,6 @@ namespace Ucu.Poo.RolePlayGame
                     }
                 }
 
-
-
                 //Recorre cada heroe, y cada uno ataca a cada enemigo
                 foreach (Hero hero in heroes)
                 {
@@ -95,6 +93,8 @@ namespace Ucu.Poo.RolePlayGame
                     {
                         hero.Cure();
                     }
+                    hero.BaseVictoryPoints+=hero.AccumulatedVictoryPoints;
+                    hero.AccumulatedVictoryPoints = 0;
                 }
             }
         }

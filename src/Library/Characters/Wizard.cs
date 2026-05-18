@@ -1,6 +1,6 @@
 namespace Ucu.Poo.RolePlayGame
 {
-public class Wizard: Hero
+public class Wizard: Hero , IMagicCharacter
 {
     //Constructor
     public Wizard(string Wname, int basehp, int AV, int DV)

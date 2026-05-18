@@ -103,6 +103,10 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
 
         }
+
+        /// <summary>
+        ///
+        /// </summary>
         [Test]
         public void TestDoEncounter_MultipleEncounters_HeroGetsExpectedVictoryPointsAndCures()
         {
@@ -142,6 +146,10 @@ namespace Ucu.Poo.RolePlayGame.Tests
                 Assert.That(hero.Health, Is.EqualTo(hero.BaseHealth));
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
         [Test]
         public void TestDoEncounter_OneEncounterWithAnEmptyTeam_EncounterWritesErrorMessageAndIsCancelled()
         {
@@ -161,7 +169,14 @@ namespace Ucu.Poo.RolePlayGame.Tests
             string output = writer.ToString();
             Assert.That(output, Does.Contain("No hay suficientes personajes en cada bando para iniciar el encuentro"));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
-        public void TestDoEncounter_StrongerEnemyTeam_EnemyTeamWins
+        public void TestDoEncounter_StrongerEnemyTeam_EnemyTeamWins()
+        {
+            
+        }
     }
 }

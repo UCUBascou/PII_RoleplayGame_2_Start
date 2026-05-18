@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
-
-
+using System.IO;
+using System;
 
 namespace Ucu.Poo.RolePlayGame.Tests
 {
@@ -103,5 +103,65 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
 
         }
+        [Test]
+        public void TestDoEncounter_MultipleEncounters_HeroGetsExpectedVictoryPointsAndCures()
+        {
+            Dwarf enano_supremo = new Dwarf("amigazon",999999,9999,9999);
+
+            List<Hero> HeroTeam = new List<Hero> {enano_supremo};
+
+            //Crear Enemigos y el grupo de enemigos
+            Thrall thrall1 = new Thrall("sech1", 100, 5, 0, 10);
+            Thrall thrall2 = new Thrall("sech2", 300, 20, 0, 10);
+            Thrall thrall3 = new Thrall("sech3", 100, 10, 0, 5);
+
+            List<Enemy> GrupoDeEnemigos = new List<Enemy>{thrall1, thrall2, thrall3};
+
+            Encounter Batalla = new Encounter(HeroTeam, GrupoDeEnemigos);
+
+            Batalla.DoEncounter();
+            foreach (Hero hero in HeroTeam)
+            {
+                Assert.That(hero.BaseVictoryPoints, Is.EqualTo(25));
+                Assert.That(hero.Health, Is.EqualTo(hero.BaseHealth));
+            }
+
+            Thrall thrall4 = new Thrall("sech4", 100, 5, 0, 10);
+            Thrall thrall5 = new Thrall("sech5", 300, 20, 0, 0);
+            Thrall thrall6 = new Thrall("sech6", 100, 10, 0, 5);
+
+            List<Enemy> Grupo = new List<Enemy>{thrall4, thrall5, thrall6};
+
+            Encounter Batalla_2 = new Encounter(HeroTeam,Grupo);
+
+            Batalla_2.DoEncounter();
+            foreach (Hero hero in HeroTeam)
+            {
+                Assert.That(hero.AccumulatedVictoryPoints, Is.EqualTo(0));
+                Assert.That(hero.BaseVictoryPoints, Is.EqualTo(40));
+                Assert.That(hero.Health, Is.EqualTo(hero.BaseHealth));
+            }
+        }
+        [Test]
+        public void TestDoEncounter_OneEncounterWithAnEmptyTeam_EncounterWritesErrorMessageAndIsCancelled()
+        {
+            Dwarf enano_supremo = new Dwarf("amigazon",999999,9999,9999);
+
+            List<Hero> HeroTeam = new List<Hero> {enano_supremo};
+
+            List<Enemy> nada = new List<Enemy>{};
+
+            Encounter cancelado = new Encounter(HeroTeam, nada);
+
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+
+            cancelado.DoEncounter();
+
+            string output = writer.ToString();
+            Assert.That(output, Does.Contain("No hay suficientes personajes en cada bando para iniciar el encuentro"));
+        }
+        [Test]
+        public void TestDoEncounter_StrongerEnemyTeam_EnemyTeamWins
     }
 }

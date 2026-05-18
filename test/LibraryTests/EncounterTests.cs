@@ -20,7 +20,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Bow arco = new Bow(5);
             elfo.AddItem(arco);
 
-            Dwarf enano = new Dwarf("Enzo", 100, 5, 5);
+            Dwarf enano = new Dwarf("Enzo", 100, 10, 5);
             Helmet cascon = new Helmet(67);
             Axe superAxe = new Axe(67);
             enano.AddItem(cascon);
@@ -44,11 +44,11 @@ namespace Ucu.Poo.RolePlayGame.Tests
             List<Hero> DwarfTeam = new List<Hero> {enano, superEnano, weakEnano};
 
             //Crear Enemigos y el grupo de enemigos
-            Thrall thrall1 = new Thrall("sech1", 150, 5, 0, 1);
-            Thrall thrall2 = new Thrall("sech2", 150, 5, 0, 1);
-            Thrall thrall3 = new Thrall("sech3", 150, 5, 0, 1);
-            Undead undead = new Undead("Gus", 200, 15, 15, 2);
-            Undead tankUndead = new Undead("Walter", 300, 5, 20, 5);
+            Thrall thrall1 = new Thrall("sech1", 150, 5, 0, 5);
+            Thrall thrall2 = new Thrall("sech2", 150, 5, 0, 5);
+            Thrall thrall3 = new Thrall("sech3", 150, 5, 0, 5);
+            Undead undead = new Undead("DeadGus", 200, 10, 15, 10);
+            Undead tankUndead = new Undead("DeadWalter", 300, 1, 20, 25);
 
             List<Enemy> GrupoDeEnemigos = new List<Enemy>{thrall1, thrall2, thrall3, undead, tankUndead};
 

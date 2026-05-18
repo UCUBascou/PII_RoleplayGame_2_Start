@@ -21,6 +21,8 @@ namespace Ucu.Poo.RolePlayGame
         {
             while (this.enemies.Count>0 && this.heroes.Count>0)
             {
+
+                //Poner esto cuando pegan
                 foreach (Hero hero in heroes)
                 {
                     if (hero.Health<=0)
@@ -35,6 +37,9 @@ namespace Ucu.Poo.RolePlayGame
                         enemies.Remove(enemy);
                     }
                 }
+
+
+                //1 solo heroe, todos pegan a ese heroe
                 if (this.heroes.Count==1)
                 {
                     foreach (Enemy enemy in enemies)

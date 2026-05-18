@@ -18,7 +18,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Bow arco = new Bow(5);
             elfo.AddItem(arco);
 
-            Dwarf enano = new Dwarf("Enzo", 100, 10, 5);
+            Dwarf enano = new Dwarf("Enzo", 100, 10, 15);
             Helmet cascon = new Helmet(67);
             Axe superAxe = new Axe(67);
             enano.AddItem(cascon);
@@ -28,9 +28,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Axe axell = new Axe(40);
             enano.AddItem(axell);
 
-            Dwarf weakEnano = new Dwarf("Renzo", 20, 10, 10);
-
-
+            Dwarf weakEnano = new Dwarf("Renzo", 100, 10, 1);
 
             Wizard gandalf = new Wizard("Gandalf", 100, 10, 0);
             MagicStaff bastonMagico = new MagicStaff(25, 0);

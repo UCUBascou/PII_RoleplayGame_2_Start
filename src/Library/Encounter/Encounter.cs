@@ -80,7 +80,7 @@ namespace Ucu.Poo.RolePlayGame
             //Termino la batalla y se chequea quien gano
             if (this.Heroes.Count == 0)
             {
-                Console.WriteLine(new string('-', 80) + "Han Ganado las fuerzas del mal");
+                Console.WriteLine(new string('-', 80) + "\nHan Ganado las fuerzas del mal");
             }
             else
             {
@@ -93,7 +93,7 @@ namespace Ucu.Poo.RolePlayGame
                     {
                         hero.Cure();
                     }
-                    hero.BaseVictoryPoints+=hero.AccumulatedVictoryPoints;
+                    hero.BaseVictoryPoints += hero.AccumulatedVictoryPoints;
                     hero.AccumulatedVictoryPoints = 0;
                 }
             }

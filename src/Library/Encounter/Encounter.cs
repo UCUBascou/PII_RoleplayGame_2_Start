@@ -30,13 +30,6 @@ namespace Ucu.Poo.RolePlayGame
                         heroes.Remove(hero);
                     }
                 }
-                foreach (Enemy enemy in enemies)
-                {
-                    if (enemy.Health<=0)
-                    {
-                        enemies.Remove(enemy);
-                    }
-                }
 
 
                 //1 solo heroe, todos pegan a ese heroe
@@ -60,16 +53,19 @@ namespace Ucu.Poo.RolePlayGame
                     {
                         foreach (Enemy enemy in enemies)
                         {
-                            if (enemy.Health>0)
+
+                            enemy.ReceiveAttack(hero);
+                            //Comprobar si murio, en tal caso darle los puntos de victoria al heroe y eliminar el enemigo de la batalla.
+                            if (enemy.Health<=0)
                             {
-                                enemy.ReceiveAttack(hero);
-                                if (enemy.Health<=0)
-                                {
-                                    hero.AccumulatedVictoryPoints+=enemy.VictoryPoints;
-                                }
-                            }
+                                hero.AccumulatedVictoryPoints+=enemy.VictoryPoints;
+                                enemies.Remove(enemy);
+                            }         
                         }
                     }
+
+
+                    
                 }
             }
             foreach (Hero hero in heroes)

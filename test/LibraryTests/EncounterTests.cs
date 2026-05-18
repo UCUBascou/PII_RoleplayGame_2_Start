@@ -11,7 +11,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
         /// Chequea que se eliminene correctamente los items, deberian ser null cuando los personajes no tienen uno de sus items
         /// </summary>
         [Test]
-        public void TestDoEncounter_HeroesWin_HeroesAliveAndEnemiesDead()
+        public void TestDoEncounter_HeroesOverBuffed_HeroesWinAndEnemiesDead()
         {
             //Craer heroes y el equipo de heroes
             Elf elfo = new Elf("Elden", 100, 20, 10);
@@ -62,7 +62,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
             //Create and Start New Encounter
             Encounter BattleOfWaterloo = new Encounter(HeroTeam, GrupoDeEnemigos);
-            BattleOfWesterLands.DoEncounter();
+            BattleOfWaterloo.DoEncounter();
 
 
 

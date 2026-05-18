@@ -4,11 +4,10 @@ using System;
 namespace Ucu.Poo.RolePlayGame
 {
     //Interfaz IAttackItem
-    public interface ICharacter // Interfaz para objetos ofensivos con solo un valor de ataque
+    public interface ICharacter //Interfaz para los personajes
     {
         string Name {get;}
         List<IItem> Equipamiento {get;}
-        bool CanUseMagic {get;}
         int BaseHealth {get;}
         int Health {get;}
         int AttackValue {get;}

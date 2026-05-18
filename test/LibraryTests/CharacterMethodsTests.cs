@@ -35,7 +35,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
         {
             Wizard wizard = new Wizard("Amigacin", 100, 10, 5);
 
-            MagicStaff staff = new MagicStaff(15);
+            MagicStaff staff = new MagicStaff(15, 1);
 
             SpellBook book = new SpellBook();
             Spell hechizo = new Spell(20,0);
@@ -93,7 +93,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             
             //Anade Items
             Helmet casco = new Helmet(15);
-            MagicStaff bastonazo = new MagicStaff(15);
+            MagicStaff bastonazo = new MagicStaff(15, 5);
             amigazo.AddItem(casco);
             amigaza.AddItem(bastonazo);
             SpellBook book = new SpellBook();

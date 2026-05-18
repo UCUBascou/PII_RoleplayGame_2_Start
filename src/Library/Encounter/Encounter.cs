@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Ucu.Poo.RolePlayGame
 {
@@ -31,7 +32,7 @@ namespace Ucu.Poo.RolePlayGame
                         heroes[0].ReceiveAttack(enemy);
                         if (heroes[0].Health<=0)
                             {
-                                heroes[0].Remove(hero);
+                                heroes.RemoveAt(0);
                             }
                     }
                 }
@@ -44,7 +45,7 @@ namespace Ucu.Poo.RolePlayGame
                         //Comprobar si murio, en tal caso eliminar al heroe de la batalla.
                         if (heroes[i%heroes.Count].Health<=0)
                             {
-                                heroes[i%heroes.Count].Remove(hero);
+                                heroes.RemoveAt(i%heroes.Count);
                             }
                     }
                 }
@@ -71,14 +72,25 @@ namespace Ucu.Poo.RolePlayGame
                 }
             }
 
-            //Cada heroe que haya ganado mas de 5 puntos de victoria al terminar el encuentro se cura.
-            foreach (Hero hero in heroes)
+            //Termino la batalla y se chequea quien gano
+            if (this.Heroes.Count == 0)
             {
-                if (hero.AccumulatedVictoryPoints - hero.BaseVictoryPoints >=5)
+                Console.WriteLine("Han Ganado las fuerzas del mal");
+            }
+            else
+            {
+                Console.WriteLine("Han Ganado las fuerzas del bien");
+
+                //Cada heroe que haya ganado mas de 5 puntos de victoria al terminar el encuentro se cura.
+                foreach (Hero hero in heroes)
                 {
-                    hero.Cure();
+                    if (hero.AccumulatedVictoryPoints - hero.BaseVictoryPoints >=5)
+                    {
+                        hero.Cure();
+                    }
                 }
             }
+
         }
 
         //Constructor

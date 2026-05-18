@@ -8,97 +8,149 @@ clases y sus atributos, operaciones y relaciones faltantes. La ventaja de usar
 
 ```mermaid
 classDiagram
-    %% Relaciones de Character
-    Character <|-- Wizard
-    Character <|-- Dwarf
-    Character <|-- Elf
+    %% Relaciones de personajes
 
-    %% Relaciones IItem
+    ICharacter <|.. Character
+    ICharacter <|-- IMagicCharacter
+    IMagicCharacter <|.. Wizard
+
+    Character <|-- Hero
+    Character <|-- Enemy
+
+    Hero <|-- Wizard
+    Hero <|-- Dwarf
+    Hero <|-- Elf
+
+    Enemy <|-- Undead
+    Enemy <|-- Thrall
+
+    %% Relaciones de Items
+
+    Character --> "*" IItem : has
+
     IAttackItem --|> IItem
     IDefenseItem --|> IItem
     IMagicItem --|> IItem
 
-    %% Relaciones de SpellsBook con Spell
     SpellsBook --> "*" Spell : has
 
-    %% Interfaz MagicItem
-    IMagicItem <|.. Staff
+    IMagicItem <|.. MagicStaff
     IMagicItem <|.. SpellsBook
 
-    %% Interfaz AttackItem
     IAttackItem <|.. Axe
     IAttackItem <|.. Sword
     IAttackItem <|.. Bow
-    IAttackItem <|.. Staff
+    IAttackItem <|.. MagicStaff
     IAttackItem <|.. SpellsBook
 
-    %% Interfaz DefenseItem
     IDefenseItem <|.. Shield
     IDefenseItem <|.. Armor
     IDefenseItem <|.. Helmet
     IDefenseItem <|.. SpellsBook
+    IDefenseItem <|.. MagicStaff
+    
+    %% Interfaz ICharacter e items
+    class ICharacter{
+        <<interface>>
+        +string Name
+        +int BaseHealth
+        +int Health
+        +int AttackValue
+        +int DefenseValue
+        +List<IItem> Items
 
-    %% clase Character
+        +ReceiveAttack(int incomingDamage)
+        +Cure()
+        +int GetTotalAttack()
+        +int GetTotalDefense()
+        +AddItem(IItem item)
+        +RemoveItem(IItem item)
+    }
+
+    class IMagicCharacter{<<Interface>>}
+    class IItem{<<interface>>}
+
+    class IAttackItem{
+        <<interface>>
+        +int AttackValue
+    }
+    class IDefenseItem{
+        <<interface>>
+        +int DefenseValue
+    }
+    class IMagicItem{
+        <<interface>>
+    }
+
+    %% Character
     class Character{
         -string Name
         -int BaseHealth
         -int Health
         -int AttackValue
         -int DefenseValue
-        -List <IItem> Items
-        -bool CanUseMagic
-        +Character(string name, int basehp, int AV, int DV)
+        -List<IITem> Items
+
         +ReceiveAttack(int incomingDamage)
         +Cure()
-        +GetTotalAttack()
-        +GetTotalDefense()
-        +AddItem(Item item)
-        +RemoveItem(Item item)
-    }
-    %% Clase Wizard
-    class Wizard{
-      +Wizard(string WizardName, int basehp, int AV, int DV)
+        +int GetTotalAttack()
+        +int GetTotalDefense()
+        +AddItem(IItem item)
+        +RemoveItem(IItem item)
     }
 
-    %% Clase Dwarf
-    class Dwarf{
-      +Dwarf(string DwarfName, int basehp, int AV, int DV)
+    %% Héroes y enemigos
+    class Hero{
+        -int BaseVictoryPoints
+        -int AccumulatedVictoryPoints
+    }
+    class Enemy{
+        -int VictoryPoints
     }
 
-    %% Clase Elf
-    class Elf{
-      +Elf(string ElfName, int basehp, int AV, int DV)
-    }
-    %% Interfaces
-    class IItem{<<interface>>}
-    class IAttackItem{
-        <<interface>>
-        +AttackValue
-    }
-    class IDefenseItem{
-        <<interface>>
-        +DefenseValue
-    }
-    class IMagicItem{<<interface>>}
+    %% Héroes
+    class Wizard{}
+    class Dwarf{}
+    class Elf{}
 
-    %% Clase SpellsBook
+    %% Enemigos
+    class Undead{}
+    class Thrall{}
+
+    %% Items mágicos
     class SpellsBook{
-      -ICollection<Spell> Spells
+        -List<Spell> spells
+        -int AttackValue
+        -int DefenseValue
     }
-
-    %% Clase Spell
     class Spell{
-      -int AttackValue
-      -int DefenseValue
+        -int AttackValue
+        -int DefenseValue
+    }
+    class MagicStaff{
+        +int AttackValue
+        +int DefenseValue
     }
 
-    %% Armas
-    class Axe{}
-    class Sword{}
-    class Bow{}
-    class Staff{}
-    %% Defensas
-    class Shield{}
-    class Armor{}
-    class Helmet{}
+    %% Items de ataque
+    class Axe{
+        +int AttackValue
+    }
+    class Sword{
+        +int AttackValue
+    }
+    class Bow{
+        +int AttackValue
+    }
+
+    %% Items de defensa
+    class Shield{
+        +int DefenseValue
+    }
+    class Armor{
+        +int DefenseValue
+    }
+    class Helmet{
+        +int DefenseValue
+    }
 ```

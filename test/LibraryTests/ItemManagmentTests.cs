@@ -34,7 +34,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
             //Wizard Items
             Wizard gandalf = new Wizard("Gandalf", 100, 10, 0);
-            MagicStaff bastonMagico = new MagicStaff(25);
+            MagicStaff bastonMagico = new MagicStaff(25, 0);
             SpellBook libroDeHechizos = new SpellBook();
             gandalf.AddItem(bastonMagico);
             gandalf.AddItem(libroDeHechizos);

@@ -25,12 +25,6 @@ namespace Ucu.Poo.RolePlayGame
         }
 
         //Stats
-        protected bool canUseMagic; //Este booleano es el que habilita a usar equipamiento magico
-        public bool CanUseMagic
-        {
-            get { return this.canUseMagic; }
-            set { this.canUseMagic = value; }
-        }
         protected int baseHealth;
         public int BaseHealth
         {
@@ -89,15 +83,17 @@ namespace Ucu.Poo.RolePlayGame
         {
             int ataqueTotal = 0;
             ataqueTotal += this.AttackValue;
+
+            //Recorre los items de ataque
             foreach (IAttackItem item in Equipamiento.OfType<IAttackItem>())
             {
-                ataqueTotal += item.AttackValue;
-            }
-            if (CanUseMagic) // Se añade para tener en cuenta los objetos mágicos, los cuales pueden tener valor de ataque
-            {
-                foreach (IAttackItem item in Equipamiento.OfType<IMagicItem>())
+                if (!(item is IMagicItem))
                 {
                     ataqueTotal += item.AttackValue;
+                }
+                else if(this is IMagicCharacter) //Si es magico y puede usar magia se suma
+                {
+                    ataqueTotal += item.AttackValue;                   
                 }
             }
             return ataqueTotal; // El ataque total es la suma del ataque del personaje y de los ataques de sus ítems
@@ -107,15 +103,17 @@ namespace Ucu.Poo.RolePlayGame
         {
             int defensaTotal = 0;
             defensaTotal += this.DefenseValue;
+            
+            //Recorre los items de defensa
             foreach (IDefenseItem item in Equipamiento.OfType<IDefenseItem>())
             {
-                defensaTotal += item.DefenseValue;
-            }
-            if (CanUseMagic) // Se añade para tener en cuenta los objetos mágicos, los cuales pueden tener valor de defensa
-            {
-                foreach (IDefenseItem item in Equipamiento.OfType<IMagicItem>())
+                if (!(item is IMagicItem))
                 {
                     defensaTotal += item.DefenseValue;
+                }
+                else if(this is IMagicCharacter) //Si es magico y puede usar magia se suma
+                {
+                    defensaTotal += item.DefenseValue;                   
                 }
             }
             return defensaTotal; // La defensa total es la suma de la defensa del personaje y de las defensas de sus ítems

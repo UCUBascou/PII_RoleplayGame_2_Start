@@ -11,7 +11,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
         /// Chequea que se eliminene correctamente los items, deberian ser null cuando los personajes no tienen uno de sus items
         /// </summary>
         [Test]
-        public void TestDoEncounter_MultipleHeroesTeamsAndEnemiesRevived_HeroesWinBothAndEnemiesDead()
+        public void TestDoEncounter_MultipleHeroTeamsAndEnemiesRevived_HeroesWinBothAndEnemiesDead()
         {
             //Craer heroes y el equipo de heroes
             Elf elfo = new Elf("Elden", 100, 20, 10);

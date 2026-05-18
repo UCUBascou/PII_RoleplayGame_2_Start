@@ -1,8 +1,6 @@
-using System.Linq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Reflection.PortableExecutable;
+
 
 
 namespace Ucu.Poo.RolePlayGame.Tests
@@ -13,26 +11,24 @@ namespace Ucu.Poo.RolePlayGame.Tests
         /// Chequea que se eliminene correctamente los items, deberian ser null cuando los personajes no tienen uno de sus items
         /// </summary>
         [Test]
-        public void TestDoEncounter_HeroesWin_HeroesAliveAndEnemiesDead()
+        public void TestDoEncounter_MultipleHeroesTeamsAndEnemiesRevived_HeroesWinBothAndEnemiesDead()
         {
             //Craer heroes y el equipo de heroes
             Elf elfo = new Elf("Elden", 100, 20, 10);
             Bow arco = new Bow(5);
             elfo.AddItem(arco);
 
-            Dwarf enano = new Dwarf("Enzo", 100, 10, 5);
+            Dwarf enano = new Dwarf("Enzo", 100, 20, 40);
             Helmet cascon = new Helmet(67);
             Axe superAxe = new Axe(67);
             enano.AddItem(cascon);
             enano.AddItem(superAxe);
 
-            Dwarf superEnano = new Dwarf("Minneto", 100, 40, 40);
+            Dwarf enano2 = new Dwarf("Minneto", 200, 40, 20);
             Axe axell = new Axe(40);
-            enano.AddItem(axell);
+            enano2.AddItem(axell);
 
-            Dwarf weakEnano = new Dwarf("Renzo", 20, 10, 10);
-
-
+            Dwarf enano3 = new Dwarf("Renzo", 300, 40, 20);
 
             Wizard gandalf = new Wizard("Gandalf", 100, 10, 0);
             MagicStaff bastonMagico = new MagicStaff(25, 0);
@@ -41,7 +37,7 @@ namespace Ucu.Poo.RolePlayGame.Tests
             gandalf.AddItem(libroDeHechizos);
 
             List<Hero> HeroTeam = new List<Hero> {gandalf, enano, elfo};
-            List<Hero> DwarfTeam = new List<Hero> {enano, superEnano, weakEnano};
+            List<Hero> DwarfTeam = new List<Hero> {enano, enano2, enano3};
 
             //Crear Enemigos y el grupo de enemigos
             Thrall thrall1 = new Thrall("sech1", 150, 5, 0, 5);
@@ -55,7 +51,25 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
             //Create and Start Encounter
             Encounter BattleOfWesterLands = new Encounter(DwarfTeam, GrupoDeEnemigos);
-            BattleOfWesterLands.DoEncounter();
+            BattleOfWesterLands.DoEncounter(); //En el log se puede verificar quien gano
+
+            //Verificar que haya por lo menos un heroe vivo
+            bool aliveHeros = false;
+            foreach (Hero hero in DwarfTeam)
+            {
+                if (hero.Health > 0)
+                {
+                    aliveHeros = true;
+                    break;
+                }
+            } 
+            Assert.That(aliveHeros, Is.EqualTo(true));
+
+            //Verificar que esten todos muertos
+            foreach (Enemy enemy in GrupoDeEnemigos)
+            {
+                Assert.That(enemy.Health, Is.LessThanOrEqualTo(0));
+            }
 
             //Revivo/curo a los enemigos para volverlos a usar en el test
             thrall1.Cure();
@@ -66,7 +80,25 @@ namespace Ucu.Poo.RolePlayGame.Tests
 
             //Create and Start New Encounter
             Encounter BattleOfWaterloo = new Encounter(HeroTeam, GrupoDeEnemigos);
-            BattleOfWesterLands.DoEncounter();
+            BattleOfWaterloo.DoEncounter(); //En el log se puede verificar quien gano
+
+            //Verificar que haya por lo menos un heroe vivo
+            aliveHeros = false;
+            foreach (Hero hero in HeroTeam)
+            {
+                if (hero.Health > 0)
+                {
+                    aliveHeros = true;
+                    break;
+                }
+            } 
+            Assert.That(aliveHeros, Is.EqualTo(true));
+
+            //Verificar que esten todos muertos
+            foreach (Enemy enemy in GrupoDeEnemigos)
+            {
+                Assert.That(enemy.Health, Is.LessThanOrEqualTo(0));
+            }
 
 
 

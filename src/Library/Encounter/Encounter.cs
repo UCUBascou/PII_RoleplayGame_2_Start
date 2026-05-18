@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Ucu.Poo.RolePlayGame
 {
@@ -20,7 +21,15 @@ namespace Ucu.Poo.RolePlayGame
         // Comienza la batalla
         public void DoEncounter()
         {
-            //Chequea que sigan habiendo por lo menos uno de cada bando
+            //Chequea que haya al menos 1 en cada bando para iniciar 
+            if (this.enemies.Count<=0 || this.heroes.Count<=0)
+            {
+                Console.WriteLine("No hay suficientes personajes en cada bando para iniciar el encuentro");
+                return;
+            }
+
+            Console.WriteLine("\n\nEmpieza una Nueva Batalla\n" + new string('-', 80));
+            //Chequea que sigan habiendo por lo menos uno de cada bando y se ejectuan las rondas hasta que muera un equipo completo
             while (this.enemies.Count>0 && this.heroes.Count>0)
             {
                 
@@ -30,6 +39,8 @@ namespace Ucu.Poo.RolePlayGame
                     foreach (Enemy enemy in enemies)
                     {
                         heroes[0].ReceiveAttack(enemy);
+
+                        //Comprobar si murio, en tal caso eliminar al heroe de la batalla.
                         if (heroes[0].Health<=0)
                             {
                                 heroes.RemoveAt(0);
@@ -40,12 +51,11 @@ namespace Ucu.Poo.RolePlayGame
                 {
                     for (int i=0;i<enemies.Count;i++)
                     {
-                        heroes[i%heroes.Count].ReceiveAttack(enemies[i]);
+                        heroes[i % heroes.Count].ReceiveAttack(enemies[i]);
 
-                        //Comprobar si murio, en tal caso eliminar al heroe de la batalla.
-                        if (heroes[i%heroes.Count].Health<=0)
+                        if (heroes[i % heroes.Count].Health<=0)
                             {
-                                heroes.RemoveAt(i%heroes.Count);
+                                heroes.RemoveAt(i % heroes.Count);
                             }
                     }
                 }
@@ -55,7 +65,7 @@ namespace Ucu.Poo.RolePlayGame
                 //Recorre cada heroe, y cada uno ataca a cada enemigo
                 foreach (Hero hero in heroes)
                 {
-                    foreach (Enemy enemy in enemies)
+                    foreach (Enemy enemy in enemies.ToList())
                     {
                         enemy.ReceiveAttack(hero);
                         
@@ -72,11 +82,11 @@ namespace Ucu.Poo.RolePlayGame
             //Termino la batalla y se chequea quien gano
             if (this.Heroes.Count == 0)
             {
-                Console.WriteLine("Han Ganado las fuerzas del mal");
+                Console.WriteLine(new string('-', 80) + "Han Ganado las fuerzas del mal");
             }
             else
             {
-                Console.WriteLine("Han Ganado las fuerzas del bien");
+                Console.WriteLine(new string('-', 80) + "\nHan Ganado las fuerzas del bien");
 
                 //Cada heroe que haya ganado mas de 5 puntos de victoria al terminar el encuentro se cura.
                 foreach (Hero hero in heroes)
@@ -92,8 +102,8 @@ namespace Ucu.Poo.RolePlayGame
         //Constructor
         public Encounter(List<Hero> heroes, List<Enemy> enemies)
         {
-            this.heroes = heroes;
-            this.enemies = enemies;
+            this.heroes = new List<Hero>(heroes);
+            this.enemies = new List<Enemy>(enemies);
         }
     }
 }

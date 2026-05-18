@@ -8,6 +8,11 @@ clases y sus atributos, operaciones y relaciones faltantes. La ventaja de usar
 
 ```mermaid
 classDiagram
+    %% Relaciones de encounter
+
+    Encounter o-- "*" Hero : heroes
+    Encounter o-- "*" Enemy : enemies
+
     %% Relaciones de personajes
 
     ICharacter <|.. Character
@@ -152,5 +157,13 @@ classDiagram
     }
     class Helmet{
         +int DefenseValue
+    }
+
+    %% Encounter
+    class Encounter{
+    -List<Hero> heroes
+    -List<Enemy> enemies
+    +DoEncounter()
+    +Encounter(List<Hero> heroes, List<Enemy> enemies)
     }
 ```

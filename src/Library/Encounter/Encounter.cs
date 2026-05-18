@@ -19,34 +19,37 @@ namespace Ucu.Poo.RolePlayGame
         // Comienza la batalla
         public void DoEncounter()
         {
+            //Chequea que sigan habiendo por lo menos uno de cada bando
             while (this.enemies.Count>0 && this.heroes.Count>0)
             {
-
-                //Poner esto cuando pegan
-                foreach (Hero hero in heroes)
-                {
-                    if (hero.Health<=0)
-                    {
-                        heroes.Remove(hero);
-                    }
-                }
-
-
-                //1 solo heroe, todos pegan a ese heroe
+                
+                //Cuando solo hay un solo heroe, todos pegan a ese heroe
                 if (this.heroes.Count==1)
                 {
                     foreach (Enemy enemy in enemies)
                     {
                         heroes[0].ReceiveAttack(enemy);
+                        if (heroes[0].Health<=0)
+                            {
+                                heroes[0].Remove(hero);
+                            }
                     }
                 }
-                else
+                else //En otro caso los enemigos van uno por uno
                 {
                     for (int i=0;i<enemies.Count;i++)
                     {
                         heroes[i%heroes.Count].ReceiveAttack(enemies[i]);
+                        if (heroes[i%heroes.Count].Health<=0)
+                            {
+                                heroes[i%heroes.Count].Remove(hero);
+                            }
                     }
                 }
+
+
+
+                
                 foreach (Hero hero in heroes)
                 {
                     if (hero.Health > 0)

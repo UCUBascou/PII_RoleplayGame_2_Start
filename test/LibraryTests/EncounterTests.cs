@@ -57,7 +57,14 @@ namespace Ucu.Poo.RolePlayGame.Tests
             Encounter BattleOfWesterLands = new Encounter(DwarfTeam, GrupoDeEnemigos);
             BattleOfWesterLands.DoEncounter();
 
-            //Create and Start Encounter
+            //Revivo/curo a los enemigos para volverlos a usar en el test
+            thrall1.Cure();
+            thrall2.Cure();
+            thrall3.Cure();
+            undead.Cure();
+            tankUndead.Cure();
+
+            //Create and Start New Encounter
             Encounter BattleOfWaterloo = new Encounter(HeroTeam, GrupoDeEnemigos);
             BattleOfWesterLands.DoEncounter();
 

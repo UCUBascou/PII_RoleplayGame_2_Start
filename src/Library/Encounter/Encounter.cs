@@ -87,7 +87,6 @@ namespace Ucu.Poo.RolePlayGame
                     }
                 }
             }
-
         }
 
         //Constructor

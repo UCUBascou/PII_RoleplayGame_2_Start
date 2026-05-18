@@ -72,11 +72,11 @@ namespace Ucu.Poo.RolePlayGame.Tests
         public void Cure_AfterDamage_RestoresHealthToBase()
         {
             //Crea Personajes
-            Elf Noche_de_pelis = new Elf("Noche de pelis", 100, 10, 10);
+            Elf Elden = new Elf("EldenRing", 100, 10, 10);
             Dwarf dwarf = new Dwarf("Super friend", 100, 10, 5);
 
             //ACciones
-            dwarf.ReceiveAttack(Noche_de_pelis);
+            dwarf.ReceiveAttack(Elden);
             dwarf.Cure();
             Assert.That(dwarf.Health, Is.EqualTo(100));
         }
